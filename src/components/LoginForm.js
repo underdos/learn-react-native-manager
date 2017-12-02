@@ -6,7 +6,7 @@ import {
     emailChanged,
     passwordChanged,
     loginUser
-} from '../actions/index';
+} from '../actions';
 
 class LoginForm extends Component{
 
