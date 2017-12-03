@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Picker } from 'react-native';
+import { Picker, ToastAndroid } from 'react-native';
 import { connect } from 'react-redux';
 import { 
     Card, 
@@ -8,9 +8,19 @@ import {
     Input, 
     Spinner 
 } from './common';
-import { employeeUpdate } from '../actions';
+import { 
+    employeeUpdate,
+    employeeCreate
+} from '../actions';
 
 class EmployeeForm extends Component{
+
+    onButtonPressed(){
+        ToastAndroid.show('Save Pressed.!', ToastAndroid.SHORT);
+        const { name, phone, shift } = this.props;
+        this.props.employeeCreate({ name, phone, shift: shift || 'Monday' })
+    }
+
     render() {
         return (
             <Card>
@@ -48,7 +58,7 @@ class EmployeeForm extends Component{
                 </CardSection>
 
                 <CardSection>
-                    <Button>
+                    <Button onPress={this.onButtonPressed.bind(this)}>
                         Create
                     </Button>
                 </CardSection>
@@ -65,4 +75,4 @@ mapStateToProps = state => {
     return { name, phone, shift  }
 }
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeForm);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeForm);

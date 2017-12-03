@@ -8,6 +8,13 @@ import Router from './Router';
 
 
 export default class App extends Component {
+  constructor(){
+    super();
+    console.ignoredYellowBox = [
+    'Setting a timer'
+    ];    
+  }
+  
   componentWillMount() {
     const config = {
       apiKey: 'AIzaSyDXXlmPgiVd8CsVZWcIA5hf_msz4l1dxhk',
